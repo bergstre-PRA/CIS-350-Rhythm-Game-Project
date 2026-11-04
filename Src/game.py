@@ -13,7 +13,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.running = True
 
-        # Instantiate the Menu class
+        # Initialized the Menu class
         self.menu = Menu()
 
     def handle_events(self):
@@ -28,13 +28,13 @@ class Game:
                     else:
                         self.running = False
 
-            # Delegate event handling to the Menu class
+            # Event handling to the Menu class
             if self.menu.handle_event(event):
                 self.running = False
 
     def draw(self):
         # Delegate drawing to the Menu class
-        self.menu.draw(self.screen, self.width, self.height)
+        self.menu.draw(self.screen, self.width)
         pygame.display.flip()
 
     def run(self):

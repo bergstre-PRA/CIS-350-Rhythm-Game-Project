@@ -3,12 +3,13 @@ from button import Button
 
 class Menu:
 
-    # Game states
+    # Variables for menu states
     MAIN_MENU = "main menu"
     SETTINGS = "settings"
     PLAY_GAME = "play game"
 
     def __init__(self):
+        """initializes the menu with default settings and buttons."""
         self.currentState = self.MAIN_MENU
 
         # Colors
@@ -38,7 +39,7 @@ class Menu:
         self._init_buttons()
 
     def _init_buttons(self):
-        # Main Menu buttons
+        """initialized all buttons for the menu"""
         self.btnPlay = Button(
             450, 220, 300, 100,
             "Play Game",
@@ -90,6 +91,13 @@ class Menu:
         )
 
     def handle_event(self, event):
+        """handles events based on the current state of the menu
+        
+        checks between different menu states do determine types of events
+        and what to output based on current menu and event type
+
+        event = the event type to be handled
+        """
         quit_requested = False
 
         if self.currentState == self.MAIN_MENU:
@@ -118,7 +126,15 @@ class Menu:
 
         return quit_requested
 
-    def draw(self, screen, width, height):
+    def draw(self, screen, width):
+        """draws the current state of the menu on the given screen
+        
+        creates and draws the current menu state using buttons and screen size
+        to position the elements. All elements are drawn on the specified screen.
+
+        screen = the surface to draw the menu on
+        width = the width of the screen to help position elements
+        """
         screen.fill(self.BLACK)
 
         if self.currentState == self.MAIN_MENU:
