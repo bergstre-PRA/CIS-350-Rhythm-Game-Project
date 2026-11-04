@@ -1,0 +1,21 @@
+{
+    "name" : "SRGS1",
+    "bpm" : 240,
+    "charts" : {
+        "easy" : [
+            {
+            "beat" : 0,
+            "length" : 0
+        },
+            {
+            "beat" : 2,
+            "length" : 0
+        },
+            {
+            "beat" : 3,
+            "length" : 0
+        }
+        ]
+        
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "keybinds" : {
+        "lane_1" : "d",
+        "lane_2" : "f",
+        "lane_3" : "j",
+        "lane_4" : "f"
+    }
+}
