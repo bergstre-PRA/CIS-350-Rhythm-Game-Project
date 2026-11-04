@@ -1,82 +1,94 @@
 from pathlib import Path
+from typing import TypedDict
 import json
 
 ASSETS_DIR = Path(__file__).parent.parent / "Assets"
 SONGS_DIR = ASSETS_DIR / "Songs"
 CHARTS_DIR = ASSETS_DIR / "Chart Files"
 
-_savedData = {}
+
+
+class ChartNote(TypedDict):
+    beat: float
+    length: float
+    hitTime: float
+
+class ChartFile(TypedDict):
+    name: str
+    bpm: float
+    charts: dict[str, list[ChartNote]]
+
+_cachedCharts: dict[str, ChartFile | bool] = {}
+
 
 #checks if the song mp3 exists and returns it
-def find_song(name):
+def find_song(name:str) -> Path | bool:
     for file in SONGS_DIR.iterdir():
         if file.is_file() and file.name == str(name) + ".mp3":
             return file
     return False
 
 #checks if chart file exists and returns it
-def getChartFile(name):
+def getChartFile(name:str) -> Path | bool:
     for file in CHARTS_DIR.iterdir():
             if file.is_file() and file.name == str(name) + ".json":
                 return file
     return False
 
 #retrieves data from chart json, caches already loaded data
-def getChartData(name):
-    if name in _savedData:
-        return _savedData[name]
+def getChartData(name:str) -> ChartFile | bool:
+    if name in _cachedCharts:
+        return _cachedCharts[name]
 
     chart = getChartFile(name)
-    if chart == False:
+    if chart is False:
         return False
+    
     with open(chart, "r") as file:
         data = json.load(file)
-    _savedData[name] = data
+    _cachedCharts[name] = data
     return data
 
 #retrieve song name from chart
-def getSongName(name):
+def getSongName(name: str) -> str | bool:
     data = getChartData(name)
-    if data == False:
+    if isinstance(data, bool):
         return False
     
     return data["name"]
 
 #retrieve song bpm from chart
-def getBpm(name):
+def getBpm(name: str) -> float | bool:
     data = getChartData(name)
-    if data == False:
+    if isinstance(data, bool):
         return False
     
     return data["bpm"]
 
 #Converts a beat number to a timestamp in seconds.
 #beat_one_at_zero=True: Beat 1 occurs at 0.0 seconds.
-def beatToSeconds(beat, bpm, beat_one_at_zero=True):
+def beatToSeconds(beat: float, bpm: float, beat_one_at_zero: bool = True) -> float:
     if beat_one_at_zero:
         return (beat - 1) * 60 / bpm
     return beat * 60 / bpm
 
 #retrieve notes from chart at difficulty as a list of size 3 dictionaries: {beat, length, hitTime}
-def getChartNotes(name, difficulty="easy"):
+def getChartNotes(name: str, difficulty: str = "easy") -> list[ChartNote] | bool:
     
     data = getChartData(name)
-    if data == False:
+    if isinstance(data, bool):
         return False
 
     #converts the beat value in file to a start time in seconds
     if difficulty in data["charts"]:
         beatChart = data["charts"][difficulty]
         bpm = data["bpm"]
-        secondChart = []
-        for n in beatChart:
-            note = n
-            note["hitTime"] = beatToSeconds(n["beat"], bpm)
+        secondChart: list[ChartNote] = []
+
+        for note in beatChart:
+            note["hitTime"] = beatToSeconds(note["beat"], bpm)
             secondChart.append(note)
+
         return secondChart
     else:
         return False
-
-chart = getChartNotes("SRGS1")
-for n in chart:
-    print(n)

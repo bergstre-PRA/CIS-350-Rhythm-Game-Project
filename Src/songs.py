@@ -11,13 +11,16 @@ class Song:
         return time.perf_counter() - self.start_time
 
     # initialize
-    def __init__(self, song="SRGS1", difficulty="easy"):
+    def __init__(self, song:str="SRGS1", difficulty:str="easy"):
         self.start_time = 0
         self.song = song
         self.difficulty = difficulty
-        self.chartNotes = getChartNotes(song, difficulty)
+        chart_notes: list[ChartNote] | bool = getChartNotes(song, difficulty)
+        if isinstance(chart_notes, bool):
+            #failed to load chart
+            pass
 
-#check input then start calculating score
+    #check input then start calculating score
     def _check_input(self):
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:

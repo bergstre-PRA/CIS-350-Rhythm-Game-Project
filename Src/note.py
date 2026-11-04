@@ -1,12 +1,11 @@
 import pygame
-import math
 
 class Note(pygame.sprite.Sprite):
     spawnOffset = 2.5
     startPos = (-50, 0)
     endPos = (400,0)
     
-    def __init__(self, rect, lane, hitTime):
+    def __init__(self, rect: pygame.Rect, lane: int, hitTime: float):
         super().__init__()
         self.rect = rect
         self.lane = lane
@@ -14,7 +13,7 @@ class Note(pygame.sprite.Sprite):
         self.spawnTime = hitTime - self.spawnOffset
 
     #returns position such that it always arrives at the end position at the hitTime, returns y value
-    def getNewPosition(self, currentTime):
+    def getNewPosition(self, currentTime:float) -> float:
         totalTime = self.hitTime - self.spawnTime
         uptime = currentTime - self.spawnTime
 
