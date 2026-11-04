@@ -17,7 +17,7 @@ class Song:
         self.difficulty = difficulty
         self.chartNotes = getChartNotes(song, difficulty)
 
-
+#check input then start calculating score
     def _check_input(self):
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
@@ -35,6 +35,8 @@ class Song:
     def endSong(self):
         pass
 
+    def draw(self):
+        pass
     def play(self):
         # call and convert chart data
         
@@ -46,5 +48,8 @@ class Song:
             self._check_input()
             self.check_miss()
             self.checkNoteSpawn()
+            self.draw()
 
         self.endSong()
+
+    
