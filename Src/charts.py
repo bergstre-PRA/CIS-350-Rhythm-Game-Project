@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import TypedDict
+from typing import TypedDict, NotRequired, TypeAlias
 import json
 
 ASSETS_DIR = Path(__file__).parent.parent / "Assets"
@@ -11,17 +11,19 @@ CHARTS_DIR = ASSETS_DIR / "Chart Files"
 class ChartNote(TypedDict):
     beat: float
     length: float
-    hitTime: float
+    hitTime: NotRequired[float]
+
 
 class ChartFile(TypedDict):
     name: str
     bpm: float
     charts: dict[str, list[ChartNote]]
 
-_cachedCharts: dict[str, ChartFile | bool] = {}
+Chart: TypeAlias = dict[str, ChartFile | bool]
+
+_cachedCharts: Chart = {}
 
 
-#checks if the song mp3 exists and returns it
 def find_song(name:str) -> Path | bool:
     for file in SONGS_DIR.iterdir():
         if file.is_file() and file.name == str(name) + ".mp3":
