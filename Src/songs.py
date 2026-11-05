@@ -1,4 +1,3 @@
-from typing import Any
 import pygame
 from game import screen # type: ignore
 from charts import *
@@ -8,7 +7,7 @@ import time
 class Song:
     # variables
     offset = 0
-    active_notes: pygame.sprite.Group[Any] = pygame.sprite.Group()
+    active_notes: pygame.sprite.Group = pygame.sprite.Group()
 
     def _get_current_time(self):
         return time.perf_counter() - self.start_time        
