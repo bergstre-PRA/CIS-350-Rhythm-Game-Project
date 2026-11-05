@@ -11,6 +11,7 @@ CHARTS_DIR = ASSETS_DIR / "Chart Files"
 class ChartNote(TypedDict):
     beat: float
     length: float
+    lane: int
     hitTime: NotRequired[float]
 
 
@@ -19,9 +20,9 @@ class ChartFile(TypedDict):
     bpm: float
     charts: dict[str, list[ChartNote]]
 
-Chart: TypeAlias = dict[str, ChartFile | bool]
+Charts: TypeAlias = dict[str, ChartFile | bool]
 
-_cachedCharts: Chart = {}
+_cachedCharts: Charts = {}
 
 
 def find_song(name:str) -> Path | bool:
@@ -74,7 +75,7 @@ def beatToSeconds(beat: float, bpm: float, beat_one_at_zero: bool = True) -> flo
         return (beat - 1) * 60 / bpm
     return beat * 60 / bpm
 
-#retrieve notes from chart at difficulty as a list of size 3 dictionaries: {beat, length, hitTime}
+#retrieve notes from chart at difficulty as a list of size 4 dictionaries: {beat, length, lane hitTime}
 def getChartNotes(name: str, difficulty: str = "easy") -> list[ChartNote] | bool:
     
     data = getChartData(name)

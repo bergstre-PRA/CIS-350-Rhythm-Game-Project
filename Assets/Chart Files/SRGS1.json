@@ -5,15 +5,18 @@
         "easy" : [
             {
             "beat" : 0,
-            "length" : 0
+            "length" : 0,
+            "lane" : 1
         },
             {
             "beat" : 2,
-            "length" : 0
+            "length" : 0,
+            "lane" : 2
         },
             {
             "beat" : 3,
-            "length" : 0
+            "length" : 0,
+            "lane" : 3
         }
         ]
         
