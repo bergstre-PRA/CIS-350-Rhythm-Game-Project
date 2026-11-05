@@ -12,14 +12,27 @@ class Song:
     def _get_current_time(self):
         return time.perf_counter() - self.start_time        
 
+    def _initNotes(self, song:str, difficulty:str):
+        self.chart_notes = getChartNotes(song, difficulty)
+        self.notes: pygame.sprite.Group = pygame.sprite.Group()
+        if isinstance(self.chart_notes, bool):
+            return False
+        for n in self.chart_notes:
+            lane = n["lane"]
+            hit_time = n.get("hitTime")
+            length = n["length"]
+            if hit_time is None:
+                continue
+            note = Note(lane, hit_time, length)
+            self.notes.add(note)
+
+
     # initialize
     def __init__(self, song:str="SRGS1", difficulty:str="easy"):
         self.start_time = 0
         self.song = find_song(song)
         self.difficulty = difficulty
-        self.chart_notes = getChartNotes(song, difficulty)
-
-
+        self._initNotes(song, difficulty)
 
     #check input then start calculating score
     def _check_input(self):
@@ -59,4 +72,17 @@ class Song:
 
         self.endSong()
 
+'''
+clock = pygame.time.Clock()
+if __name__ == "__main__":
     
+    start = time.perf_counter()
+    while True:
+        current_time = time.perf_counter() - start
+        for n in notes:
+            n.updatePos(current_time)
+        screen.fill((30, 30, 30))
+        notes.draw(screen)
+        pygame.display.flip()
+        clock.tick(60)    
+'''

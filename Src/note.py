@@ -18,12 +18,14 @@ class Note(pygame.sprite.Sprite):
     SPAWN_Y = 50
     JUDGEMENT_LINE_Y = 400
     
-    def __init__(self, lane: int, hitTime: float):
+    def __init__(self, lane: int, hitTime: float, length: float):
         super().__init__()
         self.image = NOTE_RESIZED
+        self.length = length
         self.lane = lane
         self.hitTime = hitTime
         self.spawnTime = hitTime - self.SPAWN_OFFSET
+        self.active: bool = False
 
         self.startPos = (self.LANE_LOCATIONS[lane - 1], self.SPAWN_Y)
         self.endPos = (self.LANE_LOCATIONS[lane - 1], self.JUDGEMENT_LINE_Y)
@@ -48,23 +50,11 @@ class Note(pygame.sprite.Sprite):
         self.rect.center = (self.rect.centerx, pos)
 
     def update(self, currentTime:float):
-        self.updatePos(currentTime)
+        if self.active:
+            self.updatePos(currentTime)
 
+    def draw(self, screen):
+        if not self.active:
+            return
 
-# testing
-
-clock = pygame.time.Clock()
-if __name__ == "__main__":
-    notes: pygame.sprite.Group = pygame.sprite.Group()
-    for i in range(20):
-        n = Note(i % 4, i)
-        notes.add(n)
-    start = time.perf_counter()
-    while True:
-        current_time = time.perf_counter() - start
-        for n in notes:
-            n.updatePos(current_time)
-        screen.fill((30, 30, 30))
-        notes.draw(screen)
-        pygame.display.flip()
-        clock.tick(60)
+        screen.blit(self.image, self.rect)
