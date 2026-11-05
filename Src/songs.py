@@ -1,16 +1,16 @@
 import pygame
-from game import screen # type: ignore
 from charts import *
-from note import Note # type: ignore
+from game import screen
+from note import Note
 import time
 
 class Song:
     # variables
     offset = 0
-    active_notes: pygame.sprite.Group = pygame.sprite.Group()
+    clock = pygame.time.Clock()
 
     def _get_current_time(self):
-        return time.perf_counter() - self.start_time        
+        return time.perf_counter() - self.start_time
 
     def _initNotes(self, song:str, difficulty:str):
         self.chart_notes = getChartNotes(song, difficulty)
@@ -25,6 +25,9 @@ class Song:
                 continue
             note = Note(lane, hit_time, length)
             self.notes.add(note)
+        print("initialized.")
+        for n in self.notes:
+            print(n)
 
 
     # initialize
@@ -46,14 +49,26 @@ class Song:
     def check_miss(self):
         pass
 
-    def checkNoteSpawn(self):
-        pass
-
     def endSong(self):
         pass
 
     def draw(self):
-        pass
+        screen.fill((30, 30, 30))
+        self.active_notes.draw(screen)
+        pygame.display.flip()
+
+    def updateNotes(self):
+        self.active_notes: pygame.sprite.Group = pygame.sprite.Group()
+        for note in self.notes:
+            if isinstance(note, Note):
+                if note.rect.centery > -1 * note.rect.height and note.rect.y < screen.get_height():
+                    note.active = True
+                    self.active_notes.add(note)
+                else:
+                    note.active = False
+                note.updatePos(self._get_current_time())
+        
+
     def play(self):
         # call and convert chart data
         if isinstance(self.song, bool) or isinstance(self.chart_notes, bool):
@@ -66,8 +81,9 @@ class Song:
         while ((self._get_current_time() + self.offset) < self.song_length):
             self._check_input()
             self.check_miss()
-            self.checkNoteSpawn()
+            self.updateNotes()
             self.draw()
+            self.clock.tick(60)
             
 
         self.endSong()

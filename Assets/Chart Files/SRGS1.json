@@ -1,20 +1,80 @@
 {
     "name" : "SRGS1",
-    "bpm" : 240,
+    "bpm" : 120,
     "charts" : {
         "easy" : [
             {
-            "beat" : 0,
+            "beat" : 10,
             "length" : 0,
             "lane" : 1
         },
             {
-            "beat" : 2,
+            "beat" : 10,
             "length" : 0,
             "lane" : 2
         },
             {
-            "beat" : 3,
+            "beat" : 12,
+            "length" : 0,
+            "lane" : 3
+        },
+        {
+            "beat" : 12,
+            "length" : 0,
+            "lane" : 1
+        },
+            {
+            "beat" : 13,
+            "length" : 0,
+            "lane" : 2
+        },
+            {
+            "beat" : 14,
+            "length" : 0,
+            "lane" : 3
+        },
+        {
+            "beat" : 15,
+            "length" : 0,
+            "lane" : 1
+        },
+            {
+            "beat" : 16,
+            "length" : 0,
+            "lane" : 2
+        },
+            {
+            "beat" : 17,
+            "length" : 0,
+            "lane" : 3
+        },
+        {
+            "beat" : 18,
+            "length" : 0,
+            "lane" : 1
+        },
+            {
+            "beat" : 19,
+            "length" : 0,
+            "lane" : 2
+        },
+            {
+            "beat" : 20,
+            "length" : 0,
+            "lane" : 3
+        },
+        {
+            "beat" : 21,
+            "length" : 0,
+            "lane" : 1
+        },
+            {
+            "beat" : 22,
+            "length" : 0,
+            "lane" : 2
+        },
+            {
+            "beat" : 23,
             "length" : 0,
             "lane" : 3
         }

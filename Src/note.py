@@ -15,7 +15,7 @@ NOTE_RESIZED = pygame.transform.scale(NOTE_IMAGE, (60,60))
 class Note(pygame.sprite.Sprite):
     LANE_LOCATIONS = [250, 350, 450, 550]
     SPAWN_OFFSET = 2.5
-    SPAWN_Y = 50
+    SPAWN_Y = -100
     JUDGEMENT_LINE_Y = 400
     
     def __init__(self, lane: int, hitTime: float, length: float):
@@ -48,11 +48,6 @@ class Note(pygame.sprite.Sprite):
     def updatePos(self, currentTime:float):
         pos = self.getNewPosition(currentTime)
         self.rect.center = (self.rect.centerx, pos)
-
-    def update(self, currentTime:float):
-        if self.active:
-            self.updatePos(currentTime)
-
     def draw(self, screen):
         if not self.active:
             return
