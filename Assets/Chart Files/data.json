@@ -1,0 +1,1008 @@
+{
+    "name": "test",
+    "bpm": 120,
+    "charts": {
+        "easy": [
+            {
+                "beat": 9.0,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 10.0,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 9.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 10.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 12.0,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 12.0,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 12.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 13.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 15.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 14.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 14.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 14.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 15.5,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 17.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 17.5,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 16.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 17.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 19.5,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 18.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 18.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 18.5,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 20.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 20.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 20.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 21.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 21.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 24.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 22.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 24.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 23.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 25.5,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 25.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 24.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 28.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 26.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 26.0,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 29.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 27.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 30.0,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 28.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 28.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 31.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 32.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 33.0,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 33.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 34.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 33.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 34.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 33.0,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 34.0,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 34.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 34.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 37.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 37.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 36.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 36.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 38.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 39.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 40.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 40.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 41.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 41.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 39.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 40.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 43.0,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 41.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 44.5,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 42.0,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 45.0,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 46.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 44.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 46.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 46.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 46.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 46.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 47.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 47.0,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 49.0,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 50.5,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 50.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 48.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 52.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 50.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 53.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 52.0,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 53.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 54.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 52.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 54.0,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 53.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 54.0,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 55.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 55.0,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 57.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 57.0,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 57.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 57.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 60.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 59.0,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 58.5,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 58.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 61.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 62.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 61.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 60.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 62.0,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 62.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 62.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 65.0,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 65.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 66.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 65.5,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 67.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 66.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 66.0,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 68.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 68.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 67.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 68.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 70.5,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 69.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 72.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 71.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 72.0,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 72.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 74.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 74.0,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 72.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 72.5,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 74.5,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 75.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 75.0,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 77.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 75.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 78.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 78.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 78.5,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 79.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 79.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 78.5,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 80.5,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 80.0,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 82.0,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 80.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 80.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 84.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 82.0,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 84.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 85.0,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 83.0,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 85.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 86.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 87.0,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 86.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 85.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 87.0,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 88.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 88.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 88.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 88.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 88.5,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 89.0,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 90.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 91.5,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 90.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 92.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 92.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 92.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 95.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 94.0,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 96.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 95.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 95.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 96.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 96.0,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 96.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 98.0,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 98.5,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 99.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 99.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 100.5,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 99.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 100.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 100.0,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 103.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 102.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 104.5,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 102.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 105.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 104.5,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 104.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 106.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 106.5,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 105.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 106.0,
+                "length": 0,
+                "lane": 0
+            },
+            {
+                "beat": 107.0,
+                "length": 0,
+                "lane": 2
+            },
+            {
+                "beat": 107.0,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 109.0,
+                "length": 0,
+                "lane": 3
+            },
+            {
+                "beat": 109.5,
+                "length": 0,
+                "lane": 1
+            },
+            {
+                "beat": 109.5,
+                "length": 0,
+                "lane": 3
+            }
+        ]
+    }
+}

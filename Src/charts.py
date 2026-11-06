@@ -33,6 +33,10 @@ def find_song(name:str) -> Path | bool:
 
 #checks if chart file exists and returns it
 def getChartFile(name:str) -> Path | bool:
+
+    #test
+    name = "data"
+
     for file in CHARTS_DIR.iterdir():
             if file.is_file() and file.name == str(name) + ".json":
                 return file

@@ -2,6 +2,8 @@ import pygame
 from charts import *
 from game import screen
 from note import Note
+from scoring import Score
+from judgement import JudgementLine
 import time
 
 class Song:
@@ -15,6 +17,7 @@ class Song:
     def _initNotes(self, song:str, difficulty:str):
         self.chart_notes = getChartNotes(song, difficulty)
         self.notes: pygame.sprite.Group = pygame.sprite.Group()
+        self.active_notes: pygame.sprite.Group = pygame.sprite.Group()
         if isinstance(self.chart_notes, bool):
             return False
         for n in self.chart_notes:
@@ -36,15 +39,40 @@ class Song:
         self.song = find_song(song)
         self.difficulty = difficulty
         self._initNotes(song, difficulty)
+        self.score = Score()
+        self.active_notes: pygame.sprite.Group = pygame.sprite.Group()
+        self.judgementLine: JudgementLine = JudgementLine((255,255,255), 800, 100, 400, 500)
 
     #check input then start calculating score
     def _check_input(self):
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
-                     #key pressed
-                     pass
+                lane: int
+                match event.key:
+                    case pygame.K_d:
+                        lane = 0
+                    case pygame.K_f:
+                        lane = 1
+                    case pygame.K_j:
+                        lane = 2
+                    case pygame.K_k:
+                        lane = 3
+                    case _:
+                        lane = -1
+                if lane != -1:
+                    lowest_note = None
+                    highest_y = -1
+                    for note in self.active_notes:
+                        if isinstance(note, Note) and self.judgementLine.rect.colliderect(note.rect) and lane == note.lane:
+                            if note.rect.y > highest_y:
+                                lowest_note = note
+                                highest_y = note.rect.y
 
+                    if lowest_note is not None:
+                        self.score.scoreHit(lowest_note, self._get_current_time())
+                        lowest_note.active = False
+                        self.notes.remove(lowest_note)
+                        del lowest_note
 
     def check_miss(self):
         pass
@@ -54,18 +82,24 @@ class Song:
 
     def draw(self):
         screen.fill((30, 30, 30))
+        screen.blit(self.judgementLine.image, self.judgementLine.rect)
         self.active_notes.draw(screen)
         pygame.display.flip()
 
-    def updateNotes(self):
-        self.active_notes: pygame.sprite.Group = pygame.sprite.Group()
+    def checkActiveNotes(self):
+        self.active_notes.empty()
         for note in self.notes:
             if isinstance(note, Note):
-                if note.rect.centery > -1 * note.rect.height and note.rect.y < screen.get_height():
+                if note.spawnTime <= self._get_current_time():
                     note.active = True
                     self.active_notes.add(note)
                 else:
                     note.active = False
+
+    def updateNotes(self):
+        self.checkActiveNotes()
+        for note in self.notes:
+            if isinstance(note, Note) and note.active:
                 note.updatePos(self._get_current_time())
         
 

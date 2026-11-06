@@ -2,10 +2,10 @@ from note import Note
 class Score:
 
     TIMING_RANGES: dict[str, float] = {
-        "perfect" : 0.016,
-        "great" : 0.033,
-        "good" : 0.125,
-        "bad" : 0.25
+        "perfect" : 0.03,
+        "great" : 0.1,
+        "good" : 0.25,
+        "bad" : 0.4
     }
 
     ACCURACY_SCORES: dict[str, int] = {
@@ -87,16 +87,19 @@ class Score:
 
         return self.letterGrade
 
-
-    def addHit(self, note: Note, hitTime: float, multiplier:float = 1):
-        accuracy: str = self._getAccuracy(note, hitTime)
+    def addHit(self, accuracy:str, multiplier:float = 1):
         self.accuracy[accuracy] += 1
+        print(accuracy)
         if accuracy is "miss" or accuracy is "bad":
             self.combo = 0
         else:
             self._updateCombo()
         self._updateLetterGrade()
         self.points += int(self._getAccuracyScore(accuracy) * multiplier)
+
+    def scoreHit(self, note:Note, hitTime:float, multiplier:float = 1):
+        accuracy = self._getAccuracy(note, hitTime)
+        self.addHit(accuracy, multiplier)
         
     
 
