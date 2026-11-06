@@ -89,7 +89,6 @@ class Score:
 
     def addHit(self, accuracy:str, multiplier:float = 1):
         self.accuracy[accuracy] += 1
-        print(accuracy)
         if accuracy is "miss" or accuracy is "bad":
             self.combo = 0
         else:

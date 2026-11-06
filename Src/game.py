@@ -18,12 +18,6 @@ class Game:
     def run(self):
         song = Song()
         song.play()
-        running = True
-        while running:
-            for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE or event.key == pygame.K_q:
-                        running = False
 
 
 

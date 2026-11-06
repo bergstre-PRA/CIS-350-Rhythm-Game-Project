@@ -75,10 +75,16 @@ class Song:
                         del lowest_note
 
     def check_miss(self):
-        pass
+        for note in self.active_notes:
+            if isinstance(note, Note):
+                if note.rect.y >= screen.get_height():
+                    self.score.addHit("miss")
+                    note.active = False
+                    self.active_notes.remove(note)
+                    self.notes.remove(note)
 
     def endSong(self):
-        pass
+        print("end song")
 
     def draw(self):
         screen.fill((30, 30, 30))
@@ -118,6 +124,7 @@ class Song:
             self.updateNotes()
             self.draw()
             self.clock.tick(60)
+            print("time left: " + str(self.song_length - self._get_current_time()))
             
 
         self.endSong()
