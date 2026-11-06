@@ -1,6 +1,5 @@
 import pygame
 from charts import *
-from game import screen
 from note import Note
 from scoring import Score
 from judgement import JudgementLine
@@ -26,7 +25,7 @@ class Song:
             length = n["length"]
             if hit_time is None:
                 continue
-            note = Note(lane, hit_time, length)
+            note = Note(lane, hit_time, length, self.screen)
             self.notes.add(note)
         print("initialized.")
         for n in self.notes:
@@ -34,14 +33,17 @@ class Song:
 
 
     # initialize
-    def __init__(self, song:str="SRGS1", difficulty:str="easy"):
+    def __init__(self, screen: pygame.Surface, song:str="SRGS1", difficulty:str="easy"):
         self.start_time = 0
+        self.screen = screen
+        self.screen_height = self.screen.get_height()
+        self.screen_width = self.screen.get_width()
         self.song = find_song(song)
         self.difficulty = difficulty
         self._initNotes(song, difficulty)
         self.score = Score()
         self.active_notes: pygame.sprite.Group = pygame.sprite.Group()
-        self.judgementLine: JudgementLine = JudgementLine((255,255,255), 800, 100, 400, 500)
+        self.judgementLine: JudgementLine = JudgementLine((255,255,255), self.screen_width, self.screen_height // 8, self.screen_width // 2, int(self.screen_height * 0.9))
 
     #check input then start calculating score
     def _check_input(self):
@@ -77,7 +79,7 @@ class Song:
     def check_miss(self):
         for note in self.active_notes:
             if isinstance(note, Note):
-                if note.rect.y >= screen.get_height():
+                if note.rect.y >= self.screen.get_height():
                     self.score.addHit("miss")
                     note.active = False
                     self.active_notes.remove(note)
@@ -87,9 +89,9 @@ class Song:
         print("end song")
 
     def draw(self):
-        screen.fill((30, 30, 30))
-        screen.blit(self.judgementLine.image, self.judgementLine.rect)
-        self.active_notes.draw(screen)
+        self.screen.fill((30, 30, 30))
+        self.screen.blit(self.judgementLine.image, self.judgementLine.rect)
+        self.active_notes.draw(self.screen)
         pygame.display.flip()
 
     def checkActiveNotes(self):
@@ -123,9 +125,7 @@ class Song:
             self.check_miss()
             self.updateNotes()
             self.draw()
-            self.clock.tick(60)
-            print("time left: " + str(self.song_length - self._get_current_time()))
-            
+            self.clock.tick(60)            
 
         self.endSong()
 
@@ -138,8 +138,8 @@ if __name__ == "__main__":
         current_time = time.perf_counter() - start
         for n in notes:
             n.updatePos(current_time)
-        screen.fill((30, 30, 30))
-        notes.draw(screen)
+        self.screen.fill((30, 30, 30))
+        notes.draw(self.screen)
         pygame.display.flip()
         clock.tick(60)    
 '''

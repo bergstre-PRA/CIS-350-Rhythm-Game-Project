@@ -13,13 +13,29 @@ NOTE_IMAGE = pygame.image.load(ASSETS_DIR / "Sprites" / "circl.png").convert_alp
 NOTE_RESIZED = pygame.transform.scale(NOTE_IMAGE, (60,60))
 
 class Note(pygame.sprite.Sprite):
-    LANE_LOCATIONS = [250, 350, 450, 550]
+
+    
     SPAWN_OFFSET = 2.5
     SPAWN_Y = -600
-    JUDGEMENT_LINE_Y = 500
     
-    def __init__(self, lane: int, hitTime: float, length: float):
+    def __init__(self, lane: int, hitTime: float, length: float, screen: pygame.Surface):
         super().__init__()
+
+        screen_width = screen.get_width()
+        screen_height = screen.get_height()
+
+        span = screen_width // 2
+        outside = (screen_width - span) // 2
+
+        self.LANE_LOCATIONS = [
+            outside + span * 1 // 8,
+            outside + span * 3 // 8,
+            outside + span * 5 // 8,
+            outside + span * 7 // 8
+        ]
+        self.JUDGEMENT_LINE_Y = int(screen_height * 0.9)
+        
+
         self.image = NOTE_RESIZED
         self.length = length
         self.lane = lane

@@ -15,7 +15,7 @@ class Game:
         self.running = True
 
         # Initialized the Menu class
-        self.menu = Menu()
+        self.menu = Menu(self.screen)
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -35,7 +35,7 @@ class Game:
 
     def draw(self):
         # Delegate drawing to the Menu class
-        self.menu.draw(self.screen, self.width)
+        self.menu.draw(self.width)
         pygame.display.flip()
 
     def run(self):

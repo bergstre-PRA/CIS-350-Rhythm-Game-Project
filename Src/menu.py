@@ -1,5 +1,6 @@
 import pygame
 from button import Button
+from songs import Song
 
 class Menu:
 
@@ -8,9 +9,10 @@ class Menu:
     SETTINGS = "settings"
     PLAY_GAME = "play game"
 
-    def __init__(self):
+    def __init__(self, screen):
         """initializes the menu with default settings and buttons."""
         self.currentState = self.MAIN_MENU
+
 
         # Colors
         self.WHITE = (255, 255, 255)
@@ -33,7 +35,9 @@ class Menu:
         self.offset = 0.0
 
         # Game variables
-        self.score = 0
+        self.screen = screen
+        self.song: Song | None = None
+        self.points: int = 0
 
         # Initialize buttons
         self._init_buttons()
@@ -103,6 +107,10 @@ class Menu:
         if self.currentState == self.MAIN_MENU:
             if self.btnPlay.is_clicked(event):
                 self.currentState = self.PLAY_GAME
+                self.song = Song(self.screen)
+                self.song.play()
+                self.points = self.song.score.points
+                self.song = None
             elif self.btnSettings.is_clicked(event):
                 self.currentState = self.SETTINGS
             elif self.btnQuit.is_clicked(event):
@@ -126,7 +134,7 @@ class Menu:
 
         return quit_requested
 
-    def draw(self, screen, width):
+    def draw(self, width):
         """draws the current state of the menu on the given screen
         
         creates and draws the current menu state using buttons and screen size
@@ -135,34 +143,33 @@ class Menu:
         screen = the surface to draw the menu on
         width = the width of the screen to help position elements
         """
-        screen.fill(self.BLACK)
+        self.screen.fill(self.BLACK)
 
         if self.currentState == self.MAIN_MENU:
             title_surf = self.fontTitle.render("MAIN MENU", True, self.WHITE)
-            screen.blit(title_surf, title_surf.get_rect(center=(width // 2, 120)))
+            self.screen.blit(title_surf, title_surf.get_rect(center=(width // 2, 120)))
 
-            self.btnPlay.draw(screen)
-            self.btnSettings.draw(screen)
-            self.btnQuit.draw(screen)
+            self.btnPlay.draw(self.screen)
+            self.btnSettings.draw(self.screen)
+            self.btnQuit.draw(self.screen)
 
         elif self.currentState == self.SETTINGS:
             title_surf = self.fontTitle.render("SETTINGS", True, self.WHITE)
-            screen.blit(title_surf, title_surf.get_rect(center=(width // 2, 120)))
+            self.screen.blit(title_surf, title_surf.get_rect(center=(width // 2, 120)))
 
             vol_text = self.fontButton.render(f"Volume: {self.volume}%", True, self.WHITE)
-            screen.blit(vol_text, vol_text.get_rect(center=(width // 2, 270)))
+            self.screen.blit(vol_text, vol_text.get_rect(center=(width // 2, 270)))
 
             offset_text = self.fontButton.render(f"Offset: {self.offset:.1f}", True, self.WHITE)
-            screen.blit(offset_text, offset_text.get_rect(center=(width // 2, 370)))
+            self.screen.blit(offset_text, offset_text.get_rect(center=(width // 2, 370)))
 
-            self.btnVolDown.draw(screen)
-            self.btnVolUp.draw(screen)
-            self.btnOffsetDown.draw(screen)
-            self.btnOffsetUp.draw(screen)
-            self.btnBackSettings.draw(screen)
+            self.btnVolDown.draw(self.screen)
+            self.btnVolUp.draw(self.screen)
+            self.btnOffsetDown.draw(self.screen)
+            self.btnOffsetUp.draw(self.screen)
+            self.btnBackSettings.draw(self.screen)
 
         elif self.currentState == self.PLAY_GAME:
-            title_surf = self.fontTitle.render(f"Score: {self.score}", True, self.WHITE)
-            screen.blit(title_surf, title_surf.get_rect(center=(width // 2, 100)))
-
-            self.btnBackPlay.draw(screen)
+            title_surf = self.fontTitle.render(f"Score: {self.points}", True, self.WHITE)
+            self.screen.blit(title_surf, title_surf.get_rect(center=(width // 2, 100)))
+            self.btnBackPlay.draw(self.screen)

@@ -93,8 +93,13 @@ class Score:
             self.combo = 0
         else:
             self._updateCombo()
-        self._updateLetterGrade()
+        letter = self._updateLetterGrade()
         self.points += int(self._getAccuracyScore(accuracy) * multiplier)
+
+        print("\n\n\n")
+        print("combo: " + str(self.combo))
+        print("Grade: " + str(letter))
+        print("This note: " + str(accuracy))
 
     def scoreHit(self, note:Note, hitTime:float, multiplier:float = 1):
         accuracy = self._getAccuracy(note, hitTime)
