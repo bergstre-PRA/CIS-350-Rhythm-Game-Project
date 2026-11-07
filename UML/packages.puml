@@ -1,0 +1,29 @@
+@startuml packages
+set namespaceSeparator none
+package "button" as button {
+}
+package "charts" as charts {
+}
+package "game" as game {
+}
+package "judgement" as judgement {
+}
+package "menu" as menu {
+}
+package "note" as note {
+}
+package "scoring" as scoring {
+}
+package "songs" as songs {
+}
+game --> menu
+game --> songs
+menu --> button
+menu --> songs
+note --> charts
+scoring --> note
+songs --> charts
+songs --> judgement
+songs --> note
+songs --> scoring
+@enduml

@@ -1,0 +1,136 @@
+@startuml classes
+set namespaceSeparator none
+class "Button" as button.Button {
+  color
+  font
+  hoverColor
+  rect
+  text
+  draw(surface)
+  is_clicked(event)
+}
+class "ChartFile" as charts.ChartFile {
+  bpm : float
+  charts : dict[str, list[ChartNote]]
+  name : str
+}
+class "ChartNote" as charts.ChartNote {
+  beat : float
+  hitTime : NotRequired[float]
+  lane : int
+  length : float
+}
+class "Game" as game.Game {
+  clock
+  height : int
+  menu : Menu
+  running : bool
+  screen
+  width : int
+  draw()
+  handle_events()
+  run()
+}
+class "JudgementLine" as judgement.JudgementLine {
+  image : NoneType
+  rect
+}
+class "Menu" as menu.Menu {
+  BLACK : tuple
+  BLUE : tuple
+  DARK_GRAY : tuple
+  GRAY : tuple
+  GREEN : tuple
+  LIGHT_BLUE : tuple
+  LIGHT_GREEN : tuple
+  LIGHT_RED : tuple
+  MAIN_MENU : str
+  PLAY_GAME : str
+  RED : tuple
+  SETTINGS : str
+  WHITE : tuple
+  btnBackPlay
+  btnBackSettings
+  btnOffsetDown
+  btnOffsetUp
+  btnPlay
+  btnQuit
+  btnSettings
+  btnVolDown
+  btnVolUp
+  currentState : str
+  fontButton : Font
+  fontTitle : Font
+  offset : float
+  points : int
+  screen
+  screen_width
+  song : NoneType, Song | None
+  volume : int
+  draw()
+  handle_event(event)
+}
+class "Note" as note.Note {
+  JUDGEMENT_LINE_Y : int
+  LANE_LOCATIONS : list
+  SPAWN_OFFSET : float
+  SPAWN_Y : int
+  active : bool
+  endPos : tuple
+  hitTime : float
+  image
+  lane : int
+  length : float
+  rect
+  spawnTime
+  startPos : tuple
+  draw(screen)
+  getNewPosition(currentTime: float) -> int
+  updatePos(currentTime: float)
+}
+class "Score" as scoring.Score {
+  ACCURACY_SCORES : dict[str, int]
+  TIMING_RANGES : dict[str, float]
+  accuracy : dict[str, int]
+  combo : int
+  letterGrade : str
+  max_combo : int
+  percentGrade : float
+  points : int
+  addHit(accuracy: str, multiplier: float)
+  scoreHit(note: Note, hitTime: float, multiplier: float)
+}
+class "Song" as songs.Song {
+  active_notes
+  chart_notes : bool, list
+  clock
+  difficulty : str
+  judgementLine
+  notes
+  offset : int
+  score
+  screen
+  screen_height
+  screen_width
+  song
+  song_length
+  start_time : int
+  checkActiveNotes()
+  check_miss()
+  draw()
+  endSong()
+  play()
+  updateNotes()
+}
+button.Button --* menu.Menu : btnPlay
+button.Button --* menu.Menu : btnSettings
+button.Button --* menu.Menu : btnQuit
+button.Button --* menu.Menu : btnVolUp
+button.Button --* menu.Menu : btnVolDown
+button.Button --* menu.Menu : btnOffsetUp
+button.Button --* menu.Menu : btnOffsetDown
+button.Button --* menu.Menu : btnBackSettings
+button.Button --* menu.Menu : btnBackPlay
+judgement.JudgementLine --* songs.Song : judgementLine
+scoring.Score --* songs.Song : score
+@enduml
