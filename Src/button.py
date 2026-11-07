@@ -8,11 +8,7 @@ class Button:
     """A clickable UI button."""
 
     def __init__(self, x, y, width, height, text, color, hover_color, font):
-        """creates a button with the given parameters.
-
-        using the set variables you can create a button at a specific location
-        with a set size color and text. There is also an variable for the color
-        of the button while hovored as well as one for the font of the text.
+        """Creates a button with the given parameters.
 
         x = the horizontal position of the button
         y = the vertical position of the button
@@ -30,9 +26,9 @@ class Button:
         self.font = font
 
     def draw(self, surface):
-        """draws the button on the given surface.
+        """Draws the button on the given surface.
 
-        this function deals with drawing the button on the screen as well as
+        This function deals with drawing the button on the screen as well as
         determining the color based on cursor location
 
         surface = the surface to draw the button on

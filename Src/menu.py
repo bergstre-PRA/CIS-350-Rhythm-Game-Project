@@ -94,7 +94,12 @@ class Menu:
         )
 
     def handle_event(self, event):
-        """Handle a pygame event based on the current menu state."""
+        """Handles events based on the current state of the menu.
+        
+        Determines what to output based on current menu and event type
+
+        Event = the event type to be handled
+        """
         quit_requested = False
 
         if self.current_state == self.MAIN_MENU:
