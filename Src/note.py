@@ -1,24 +1,30 @@
-import math
-import time
+"""Note sprite used for rhythm gameplay."""
+
 import pygame
-from pygame.sprite import Group
+
 from charts import ASSETS_DIR
 
 pygame.init()
-screen_width = 800
-screen_height = 600
-screen = pygame.display.set_mode((screen_width, screen_height))
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-NOTE_IMAGE = pygame.image.load(ASSETS_DIR / "Sprites" / "circl.png").convert_alpha()
-NOTE_RESIZED = pygame.transform.scale(NOTE_IMAGE, (60,60))
+NOTE_IMAGE = pygame.image.load(
+    ASSETS_DIR / "Sprites" / "circl.png"
+    ).convert_alpha()
+NOTE_RESIZED = pygame.transform.scale(NOTE_IMAGE, (60, 60))
+
 
 class Note(pygame.sprite.Sprite):
+    """A falling note that moves toward the judgement line."""
 
-    
     SPAWN_OFFSET = 2.5
     SPAWN_Y = -600
-    
-    def __init__(self, lane: int, hitTime: float, length: float, screen: pygame.Surface):
+
+    def __init__(
+        self, lane: int, hit_time: float, length: float, screen: pygame.Surface
+    ):
+        """Initialize a note at its spawn location."""
         super().__init__()
 
         screen_width = screen.get_width()
@@ -27,45 +33,46 @@ class Note(pygame.sprite.Sprite):
         span = screen_width // 2
         outside = (screen_width - span) // 2
 
-        self.LANE_LOCATIONS = [
+        self.lane_locations = [
             outside + span * 1 // 8,
             outside + span * 3 // 8,
             outside + span * 5 // 8,
-            outside + span * 7 // 8
+            outside + span * 7 // 8,
         ]
-        self.JUDGEMENT_LINE_Y = int(screen_height * 0.9)
-        
+        self.judgement_line_y = int(screen_height * 0.9)
 
         self.image = NOTE_RESIZED
         self.length = length
         self.lane = lane
-        self.hitTime = hitTime
-        self.spawnTime = hitTime - self.SPAWN_OFFSET
-        self.active: bool = False
+        self.hit_time = hit_time
+        self.spawn_time = hit_time - self.SPAWN_OFFSET
+        self.active = False
 
-        self.startPos = (self.LANE_LOCATIONS[lane], self.SPAWN_Y)
-        self.endPos = (self.LANE_LOCATIONS[lane], self.JUDGEMENT_LINE_Y)
+        self.start_pos = (self.lane_locations[lane], self.SPAWN_Y)
+        self.end_pos = (self.lane_locations[lane], self.judgement_line_y)
 
         self.rect = self.image.get_rect()
-        self.rect.center = self.startPos
+        self.rect.center = self.start_pos
 
-    #returns position such that it always arrives at the end position at the hitTime, returns y value
-    def getNewPosition(self, currentTime:float) -> int:
-        totalTime = self.hitTime - self.spawnTime
-        uptime = currentTime - self.spawnTime
+    def get_new_position(self, current_time: float) -> int:
+        """Return the note's y-position for a given time."""
+        total_time = self.hit_time - self.spawn_time
+        uptime = current_time - self.spawn_time
 
-        percentTime = uptime / totalTime
-        y_1 = self.startPos[1]
-        y_2 = self.endPos[1]
+        percent_time = uptime / total_time
+        y_1 = self.start_pos[1]
+        y_2 = self.end_pos[1]
         distance = y_2 - y_1
-        position = y_1 + distance * percentTime
+        position = y_1 + distance * percent_time
         return int(position)
 
-    def updatePos(self, currentTime:float):
-        pos = self.getNewPosition(currentTime)
+    def update_pos(self, current_time: float):
+        """Move the note to its current visual position."""
+        pos = self.get_new_position(current_time)
         self.rect.center = (self.rect.centerx, pos)
-        
+
     def draw(self, screen):
+        """Draw the note if it is active."""
         if not self.active:
             return
 

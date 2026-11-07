@@ -1,52 +1,73 @@
-import pygame
-from charts import *
-from note import Note
-from scoring import Score
-from judgement import JudgementLine
+"""Song playback and note logic."""
+
 import time
 
+import pygame
+
+from charts import find_song, get_chart_notes
+from judgement import JudgementLine
+from note import Note
+from scoring import Score
+
+
 class Song:
-    # variables
+    """Manage gameplay for a single song track."""
+
     offset = 0
     clock = pygame.time.Clock()
 
     def _get_current_time(self):
+        """Return the elapsed time in seconds since the song started."""
         return time.perf_counter() - self.start_time
 
-    def _initNotes(self, song:str, difficulty:str):
-        self.chart_notes = getChartNotes(song, difficulty)
+    def _init_notes(self, song: str, difficulty: str):
+        """Populate note data for the selected chart and difficulty."""
+        self.chart_notes = get_chart_notes(song, difficulty)
         self.notes: pygame.sprite.Group = pygame.sprite.Group()
         self.active_notes: pygame.sprite.Group = pygame.sprite.Group()
-        if isinstance(self.chart_notes, bool):
+        if self.chart_notes is None:
             return False
-        for n in self.chart_notes:
-            lane = n["lane"]
-            hit_time = n.get("hitTime")
-            length = n["length"]
+        for note_data in self.chart_notes:
+            lane = note_data["lane"]
+            hit_time = note_data.get("hit_time", note_data.get("hitTime"))
+            length = note_data["length"]
             if hit_time is None:
                 continue
             note = Note(lane, hit_time, length, self.screen)
             self.notes.add(note)
         print("initialized.")
-        for n in self.notes:
-            print(n)
+        for note in self.notes:
+            print(note)
+        return True
 
-
-    # initialize
-    def __init__(self, screen: pygame.Surface, song:str="SRGS1", difficulty:str="easy"):
+    def __init__(
+        self,
+        screen: pygame.Surface,
+        song: str = "SRGS1",
+        difficulty: str = "easy",
+    ):
+        """Set up a song and judgement line."""
         self.start_time = 0
         self.screen = screen
         self.screen_height = self.screen.get_height()
         self.screen_width = self.screen.get_width()
         self.song = find_song(song)
         self.difficulty = difficulty
-        self._initNotes(song, difficulty)
+        self.song_length = 0
+        self.chart_notes = None
+        self._init_notes(song, difficulty)
         self.score = Score()
         self.active_notes: pygame.sprite.Group = pygame.sprite.Group()
-        self.judgementLine: JudgementLine = JudgementLine((255,255,255), self.screen_width, self.screen_height // 8, self.screen_width // 2, int(self.screen_height * 0.9))
+        self.judgement_line: JudgementLine = JudgementLine(
+            (255, 255, 255),
+            self.screen_width,
+            self.screen_height // 8,
+            self.screen_width // 2,
+            int(self.screen_height * 0.9),
+        )
 
-    #check input then start calculating score
     def _check_input(self):
+        """Handle keyboard input for note hits."""
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 lane: int
@@ -65,81 +86,70 @@ class Song:
                     lowest_note = None
                     highest_y = -1
                     for note in self.active_notes:
-                        if isinstance(note, Note) and self.judgementLine.rect.colliderect(note.rect) and lane == note.lane:
+                        if (
+                            isinstance(note, Note)
+                            and self.judgement_line.rect.colliderect(note.rect)
+                            and lane == note.lane
+                        ):
                             if note.rect.y > highest_y:
                                 lowest_note = note
                                 highest_y = note.rect.y
 
                     if lowest_note is not None:
-                        self.score.scoreHit(lowest_note, self._get_current_time())
+                        self.score.score_hit(
+                            lowest_note, self._get_current_time()
+                            )
                         lowest_note.active = False
                         self.notes.remove(lowest_note)
                         del lowest_note
 
     def check_miss(self):
+        """Miss notes that passed the judgement line without a hit."""
         for note in self.active_notes:
             if isinstance(note, Note):
                 if note.rect.y >= self.screen.get_height():
-                    self.score.addHit("miss")
+                    self.score.add_hit("miss")
                     note.active = False
                     self.active_notes.remove(note)
                     self.notes.remove(note)
 
-    def endSong(self):
-        print("end song")
-
     def draw(self):
+        """Draw gameplay screen."""
         self.screen.fill((30, 30, 30))
-        self.screen.blit(self.judgementLine.image, self.judgementLine.rect)
+        self.screen.blit(self.judgement_line.image, self.judgement_line.rect)
         self.active_notes.draw(self.screen)
         pygame.display.flip()
 
-    def checkActiveNotes(self):
+    def check_active_notes(self):
+        """Activate notes whose spawn time has passed."""
         self.active_notes.empty()
         for note in self.notes:
             if isinstance(note, Note):
-                if note.spawnTime <= self._get_current_time():
+                if note.spawn_time <= self._get_current_time():
                     note.active = True
                     self.active_notes.add(note)
                 else:
                     note.active = False
 
-    def updateNotes(self):
-        self.checkActiveNotes()
+    def update_notes(self):
+        """Update each active note position."""
+        self.check_active_notes()
         for note in self.notes:
             if isinstance(note, Note) and note.active:
-                note.updatePos(self._get_current_time())
-        
+                note.update_pos(self._get_current_time())
 
     def play(self):
-        # call and convert chart data
-        if isinstance(self.song, bool) or isinstance(self.chart_notes, bool):
+        """Play the selected song until it ends."""
+        if self.song is None or self.chart_notes is None:
             return
-        songSound: pygame.mixer.Sound = pygame.mixer.Sound(self.song)
-        self.song_length = songSound.get_length()
-        pygame.mixer.Sound.play(songSound)
+        song_sound: pygame.mixer.Sound = pygame.mixer.Sound(self.song)
+        self.song_length = song_sound.get_length()
+        pygame.mixer.Sound.play(song_sound)
         self.start_time = time.perf_counter()
 
-        while ((self._get_current_time() + self.offset) < self.song_length):
+        while (self._get_current_time() + self.offset) < self.song_length:
             self._check_input()
             self.check_miss()
-            self.updateNotes()
+            self.update_notes()
             self.draw()
-            self.clock.tick(60)            
-
-        self.endSong()
-
-'''
-clock = pygame.time.Clock()
-if __name__ == "__main__":
-    
-    start = time.perf_counter()
-    while True:
-        current_time = time.perf_counter() - start
-        for n in notes:
-            n.updatePos(current_time)
-        self.screen.fill((30, 30, 30))
-        notes.draw(self.screen)
-        pygame.display.flip()
-        clock.tick(60)    
-'''
+            self.clock.tick(60)

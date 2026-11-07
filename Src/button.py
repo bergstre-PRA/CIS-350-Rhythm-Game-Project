@@ -1,11 +1,15 @@
+"""Button widget used by the game's menus."""
+
+
 import pygame
 
 
 class Button:
+    """A clickable UI button."""
 
     def __init__(self, x, y, width, height, text, color, hover_color, font):
         """creates a button with the given parameters.
-        
+
         using the set variables you can create a button at a specific location
         with a set size color and text. There is also an variable for the color
         of the button while hovored as well as one for the font of the text.
@@ -22,7 +26,7 @@ class Button:
         self.rect = pygame.Rect(x, y, width, height)
         self.text = text
         self.color = color
-        self.hoverColor = hover_color
+        self.hover_color = hover_color
         self.font = font
 
     def draw(self, surface):
@@ -33,21 +37,23 @@ class Button:
 
         surface = the surface to draw the button on
         """
-        mousePos = pygame.mouse.get_pos()
+        mouse_pos = pygame.mouse.get_pos()
 
-        currentColor = (
-            self.hoverColor if self.rect.collidepoint(mousePos) else self.color
+        current_color = (
+            self.hover_color if
+            self.rect.collidepoint(mouse_pos)
+            else self.color
         )
 
-        pygame.draw.rect(surface, currentColor, self.rect, border_radius=8)
+        pygame.draw.rect(surface, current_color, self.rect, border_radius=8)
         pygame.draw.rect(surface, (0, 0, 0), self.rect, 2, border_radius=8)
 
-        textSurf = self.font.render(self.text, True, (255, 255, 255))
-        textRect = textSurf.get_rect(center=self.rect.center)
-        surface.blit(textSurf, textRect)
+        text_surface = self.font.render(self.text, True, (255, 255, 255))
+        text_rect = text_surface.get_rect(center=self.rect.center)
+        surface.blit(text_surface, text_rect)
 
     def is_clicked(self, event):
-        """checks if the button is clicked."""
+        """Return True when the button is clicked."""
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if self.rect.collidepoint(event.pos):
                 return True
