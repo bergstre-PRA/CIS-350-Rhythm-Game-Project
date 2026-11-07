@@ -95,7 +95,7 @@ class Menu:
 
     def handle_event(self, event):
         """Handles events based on the current state of the menu.
-        
+
         Determines what to output based on current menu and event type
 
         Event = the event type to be handled
